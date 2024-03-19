@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('github');  
             $table->string('cv');
             $table->string('password');
-            $table->bigInteger('hunter');
+            $table->string('hunter');
             $table->rememberToken();
             $table->timestamps();
         });

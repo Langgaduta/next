@@ -113,6 +113,7 @@ class HunterController extends Controller
 
 
         return response()->json([
+            'message' => 'Login Berhasil!',
             'token' => $token,
             'type' => 'bearer',
             'expires_in' => 0
