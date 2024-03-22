@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HunterController;
+use App\Http\Controllers\AsetController;
 use App\Http\Controllers\TalentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,15 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::post('logout', [HunterController::class, 'logout']);
     Route::post('refresh', [HunterController::class, 'refresh']);
     Route::post('me', [HunterController::class, 'me']);
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'aset'], function ($router) {
+
+    Route::get('bank', [AsetController::class, 'bank']);
+    Route::get('provinsi', [AsetController::class, 'provinsi']);
+    Route::post('kota', [AsetController::class, 'kota']);
+    Route::post('kecamatan', [AsetController::class, 'kecamatan']);
+    Route::post('desa', [AsetController::class, 'desa']);
 });
 
 Route::get('/talent/{reveral_hunter}', [TalentController::class, 'show']);
