@@ -31,13 +31,38 @@ class TalentController extends Controller
     public function store(Request $request)
     {
 
+        $messages = [
+            'nik.required' => 'Kolom nik wajib diisi.',
+            'email.required' => 'Kolom email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah digunakan.',
+            'namaL.required' => 'nama lengkap belum terisi.',
+            'namaP.required' => 'nama panggilan belum terisi.',
+            'gender.required' => 'jenis kelamin belum terisi.',
+            'noHP.required' => 'no WhatsApp belum terisi.',
+            'alamat_KTP.required' => 'alamat ktp belum terisi.',
+            'alamat_domisili.required' => 'alamat_domisili belum terisi.',
+            'pendidikan_terakhir.required' => 'kolom pendidikan terakhir belum terisi.',
+            'status_pekerjaan.required' => 'status pekerjaan belum terisi.',
+            'jenis_pekerjaan_yang_diminati.required' => 'jenis pekerjaan yang diminati belum terisi.',
+            'skill_1.required' => 'Tech Stack 1 belum terisi.',
+            'skill_1_waktu.required' => 'Lama Pengalaman Kerja belum terisi.',
+            'skill_2.required' => 'Tech Stack 2 belum terisi.',
+            'skill_2_waktu.required' => 'Lama Pengalaman Kerja belum terisi.',
+            'level.required' => 'tingkat anda belum terisi.',
+            'waktu_assign.required' => 'waktu assign belum terisi.',
+            'linkedin.required' => 'linkedin belum terisi.',
+            'github.required' => 'github belum terisi.',
+            'kodepos.required' => 'kodepos belum terisi.',
+            'password.required' => 'password belum terisi.',
+        ];
         
         $validator = Validator::make($request->all(), [
             'nik' => 'required',
             'email' => 'required|email|max:255',
             'namaL' => 'required',
             'namaP' => 'required',
-            'gender' => 'required|in:L,P',
+            'gender' => 'required|in:Laki-Laki,Perempuan',
             'noHP' => 'required|min:12|max:13',
             'alamat_KTP' => 'required',
             'alamat_domisili' => 'required',
@@ -55,7 +80,7 @@ class TalentController extends Controller
             'cv' => 'required|mimes:jpeg,jpg,png,docx,doc,pdf',
             'hunter' => 'required',
             'password' => 'required|min:6|confirmed',
-        ]);
+        ], $messages);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 401);

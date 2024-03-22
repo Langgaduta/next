@@ -138,20 +138,44 @@ class HunterController extends Controller
     public function register(Request $request)
     {
 
+        $messages = [
+            'nik.required' => 'Kolom nik wajib diisi.',
+            'email.required' => 'Kolom email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah digunakan.',
+            'namaL.required' => 'nama lengkap belum terisi.',
+            'namaP.required' => 'nama panggilan belum terisi.',
+            'gender.required' => 'jenis kelamin belum terisi.',
+            'noHP.required' => 'no WhatsApp belum terisi.',
+            'ig.required' => 'instagram belum terisi.',
+            'nama_perusahaan_saat_ini.required' => 'kolom nama perusahaan belum terisi.',
+            'bidang_pekerjaan.required' => 'kolom bidang pekerjaan belum terisi.',
+            'rekening.required' => 'rekening belum terisi.',
+            'nama_bank.required' => 'nama bank belum terisi.',
+            'atas_nama_rekening.required' => 'atas nama rekening belum terisi.',
+            'provinsi.required' => 'provinsi belum terisi.',
+            'kota.required' => 'kota belum terisi.',
+            'kecamatan.required' => 'kecamatan belum terisi.',
+            'desa.required' => 'desa belum terisi.',
+            'jalan.required' => 'jalan belum terisi.',
+            'kodepos.required' => 'kodepos belum terisi.',
+            'password.required' => 'password belum terisi.',
+        ];
+
         $validator = Validator::make($request->all(), [
             'nik' => 'required|unique:users,nik',
             'email' => 'required|email|max:255|unique:users,email',
             'namaL' => 'required',
             'namaP' => 'required',
-            'gender' => 'required|in:L,P',
+            'gender' => 'required|in:Laki-Laki,Perempuan',
             'noHP' => 'required|numeric|min:11',
             'ig' => 'required',
             'nama_perusahaan_saat_ini' => 'required',
             'bidang_pekerjaan' => 'required',
             'rekening' => 'required|min:10',
             'nama_bank' => 'required',
-            'atas_nama_bank' => 'required',
-            'provinsi' => 'required|min:10',
+            'atas_nama_rekening' => 'required',
+            'provinsi' => 'required',
             'kota' => 'required',
             'kecamatan' => 'required',
             'desa' => 'required',
@@ -159,7 +183,7 @@ class HunterController extends Controller
             'kodepos' => 'required|numeric|min:5',
             'password' => 'required|min:6|confirmed',
             'ID_referral' => '',
-        ]);
+        ], $messages);
 
         $email = $request->email;
 
@@ -181,9 +205,9 @@ class HunterController extends Controller
 
         $nama_bank = $request->nama_bank;
         $rekening = $request->rekening;
-        $atas_nama_bank = $request->atas_nama_bank;
+        $atas_nama_rekening = $request->atas_nama_rekening;
         
-        $bank = $nama_bank . '-' . $rekening . '( ' . $atas_nama_bank . ' )';
+        $bank = $nama_bank . '-' . $rekening . '( ' . $atas_nama_rekening . ' )';
 
         $provinsi = $request->provinsi;
         $kota = 'kota/kab ' . $request->kota;
@@ -232,7 +256,7 @@ class HunterController extends Controller
 //     "bidang_pekerjaan" : "web dev",
 //     "rekening" : "1234567890",
 //     "nama_bank" : "BRI",
-//     "atas_nama_bank" : "KENZI BADRIKA",
+//     "atas_nama_rekening" : "KENZI BADRIKA",
 //     "kota" : "bogor",
 //     "provinsi" : "jawa barat", 
 //     "kecamatan" : "ciawi", 

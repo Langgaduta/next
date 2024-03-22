@@ -18,8 +18,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('namaL');
             $table->string('namaP');
-            $table->enum('gender', ['L', 'P']);
-            $table->string('alamat');
+            $table->enum('gender', ['Laki-Laki', 'Perepuan']);
+            $table->text('alamat');
             $table->bigInteger('noHP');
             $table->string('ig');
             $table->string('nama_perusahaan_saat_ini');  
